@@ -8,5 +8,6 @@
     <title>Awesome Theme</title>
     <?php wp_head();?>
 </head>
+<?php wp_nav_menu(array('theme_location'=>'primary')); ?>
 
 <body>
