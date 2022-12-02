@@ -1,3 +1,4 @@
+<!-- We can use other name for file but with template name we can connect it in wordpress  -->
 <?php 
 /*
     Template Name: Page No Title

@@ -13,3 +13,12 @@
 
     }
     add_action('init','awesome_theme_setup');
+
+    // to add background image on website
+    add_theme_support('custom-background');
+
+    // to add header image
+    add_theme_support('custom-header');
+
+    //to add blog image
+    add_theme_support('post-thumbnails');

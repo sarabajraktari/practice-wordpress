@@ -1,3 +1,4 @@
+<!-- We can use id like 17 number or slung name page-about-me -->
 <?php get_header();?>
 
 
