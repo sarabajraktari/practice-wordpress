@@ -5,12 +5,12 @@
     if( have_posts() ):
         while( have_posts()):the_post(); ?>
 
-<h1> <?php the_title(); ?> </h1>
-<small>Posted on: <?php the_time();?>, in <?php the_category(); ?></small>
 <p> <?php the_content(); ?> </p>
+
+<h1> <?php the_title(); ?> </h1>
 <hr>
 <?php endwhile;
 
-    endif; ?>
+                endif; ?>
 
 <?php get_footer();?>
