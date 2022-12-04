@@ -22,3 +22,6 @@
 
     //to add blog image
     add_theme_support('post-thumbnails');
+
+    //to add some formats on posts
+    add_theme_support('post-formats',array('aside','image','video'));
