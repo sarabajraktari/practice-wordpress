@@ -31,6 +31,9 @@
     //to add some formats on posts
     add_theme_support('post-formats',array('aside','image','video'));
 
+    // to add html5 formating
+    add_theme_support('html5',array('search-form'));
+
     // Sidebar function
 
     function awesome_widget_setup(){

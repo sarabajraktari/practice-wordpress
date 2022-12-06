@@ -52,8 +52,11 @@
                     </div><!-- /.container-fluid -->
                 </nav>
 
-            </div>
 
+            </div>
+            <div class="search-form-container">
+                <?php get_search_form()?>
+            </div>
         </div>
 
         <!-- <img src="<?php header_image(); ?>" height="<?php echo get_custom_header()->height; ?>"
