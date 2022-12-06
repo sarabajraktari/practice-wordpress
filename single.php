@@ -5,7 +5,8 @@
     <div class="col-xs-12 col-sm-8">
 
         <?php 
-		
+  
+
 		if( have_posts() ):
 			
 			while( have_posts() ): the_post(); ?>
@@ -26,6 +27,14 @@
 
             <hr>
 
+            <div class="row">
+                <div class="col-xs-6 text-left">
+                    <?php previous_post_link();?>
+                </div>
+                <div class="col-xs-6 text-right">
+                    <?php next_post_link();?>
+                </div>
+            </div>
             <?php 
                             // Boolean function
 						if( comments_open() ){ 
