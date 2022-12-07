@@ -70,3 +70,10 @@
 
     // Include Walker file
     require get_template_directory() . '/inc/walker.php';
+
+    // Head function to remove version wordpress
+function awesome_remove_version(){
+    return '';
+}
+
+add_filter('the_generator','awesome_remove_version');
