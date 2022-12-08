@@ -72,8 +72,54 @@
     require get_template_directory() . '/inc/walker.php';
 
     // Head function to remove version wordpress
-function awesome_remove_version(){
-    return '';
-}
+    function awesome_remove_version(){
+        return '';
+    };
 
-add_filter('the_generator','awesome_remove_version');
+    add_filter('the_generator','awesome_remove_version');
+
+        // Custom Post Type
+
+    function awesome_custom_post_type(){
+        
+        $labels=array(
+            'name'=>'Portfolio', //name post type
+            'singular_name'=>'Portfolio',
+            'add_new'=>'Add Item',  //to create new item
+            'all_items'=>'All Items',   //to show all items
+            'add_new_item'=>'Add Item' ,
+            'edit_item'=>'Edit Item', //to edit item
+            'new_item'=>'New Item',
+            'view_item'=>'View Item',
+            'search_item'=>'Search Portfolio',
+            'not_found'=>'No items found',
+            'not_found_in_trash' =>'No items found in trash',
+            'parent_item_colon'=>'Parent Item'
+
+        );
+
+        $args=array(
+            'labels'=>$labels,
+            'public'=>true,
+            'has_archive'=>true,
+            'publicly_queryable'=>true,
+            'query_var'=>true,
+            'rewrite'=>true,
+            'capability_type'=>'post',
+            'hierarchial'=>false,
+            'supports'=>array(
+                'title',
+                'editor',
+                'excerpt',
+                'thumbnail',
+                'revisions'
+            ),
+            'taxonomies'=>array('category','post_tag'),
+            'menu_position'=>5,
+            'exlude_from_search'=>false
+        );
+
+        register_post_type('portfolio',$args);
+
+    }
+    add_action('init','awesome_custom_post_type');
