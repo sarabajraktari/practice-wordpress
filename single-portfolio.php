@@ -21,7 +21,16 @@
 
             <?php endif; ?>
             <!-- Built in functions -->
-            <small><?php the_category(' '); ?> || <?php the_tags(); ?> || <?php edit_post_link(); ?></small>
+            <small><?php echo awesome_get_terms($post->ID,'field');?>
+                || <?php echo awesome_get_terms($post->ID,'software');?>
+
+                <?php
+                if(current_user_can('manage_options')){
+                    echo '|| '; edit_post_link(); 
+                    
+                }
+                    ?></small>
+
 
             <?php the_content(); ?>
 

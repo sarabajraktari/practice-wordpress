@@ -78,12 +78,12 @@
 
     add_filter('the_generator','awesome_remove_version');
 
-        // Custom Post Type
+        // Custom Post Field
 
     function awesome_custom_post_type(){
         
         $labels=array(
-            'name'=>'Portfolio', //name post type
+            'name'=>'Portfolio', //name post Field
             'singular_name'=>'Portfolio',
             'add_new'=>'Add Item',  //to create new item
             'all_items'=>'All Items',   //to show all items
@@ -105,8 +105,8 @@
             'publicly_queryable'=>true,
             'query_var'=>true,
             'rewrite'=>true,
-            'capability_type'=>'post',
-            'hierarchial'=>false,
+            'capability_field'=>'post',
+            'hierarchical'=>false,
             'supports'=>array(
                 'title',
                 'editor',
@@ -114,12 +114,71 @@
                 'thumbnail',
                 'revisions'
             ),
-            'taxonomies'=>array('category','post_tag'),
+            // 'taxonomies'=>array('category','post_tag'), We have taxonomy from post Field
             'menu_position'=>5,
-            'exlude_from_search'=>false
+            'exclude_from_search'=>false
         );
 
         register_post_type('portfolio',$args);
 
     }
     add_action('init','awesome_custom_post_type');
+
+
+    function awesome_custom_taxonomies(){
+        
+        //add new taxonomy hierarchical
+
+        $labels=array(
+            'name' => 'Fields',
+            'singular_name' => 'Field',
+            'search_items' => 'Search Fields',
+            'all_items' => 'All Fields',
+            'parent_item' => 'Parent Field',
+            'parent_item_colon' => 'Parent Field:',
+            'edit_item' => 'Edit Field',
+            'update_item' => 'Update Field',
+            'add_new_item' => 'Add New Work Field',
+            'new_item_name' => 'New Field Name',
+            'menu_name' => 'Fields'
+                );
+        $args=array(
+            'hierarchical' => true,
+            'labels'=>$labels,
+            'show_ui'=>true,
+            'show_admin_column'=>true, //to show colums for taxonomies
+            'query_var'=>true,
+            'rewrite'=>array('slug'=>'field')
+        );
+
+        register_taxonomy('field',array('portfolio'),$args);//name taxonomy, which post Field is activate,and args
+        
+        //add new taxonomy NOT hierarchical
+        register_taxonomy('software','portfolio',array(
+            'label'=>'Software',
+            'rewrite'=>array('slug'=>'software'),
+            'hierarchical'=>false,
+            'show_admin_column'=>true
+        ));
+    }
+
+    add_action('init','awesome_custom_taxonomies');
+
+
+    // Custom Term Function
+
+
+    function awesome_get_terms( $postID, $term ){
+	
+        $terms_list = wp_get_post_terms($postID, $term); 
+        $output = '';
+                        
+        $i = 0;
+        foreach( $terms_list as $term ){ $i++;
+            if( $i > 1 ){ $output .= ', '; }
+            $output .= '<a href="' . get_term_link( $term ) . '">'. $term->name .'</a>';
+        }
+        
+        return $output;
+        
+    }
