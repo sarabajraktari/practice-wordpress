@@ -182,3 +182,7 @@
         return $output;
         
     }
+
+    //Image Sizes
+    add_image_size('image',600,600,false);
+    add_image_size('my_custom_size',700,400,true);
