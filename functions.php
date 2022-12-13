@@ -166,8 +166,6 @@
 
 
     // Custom Term Function
-
-
     function awesome_get_terms( $postID, $term ){
 	
         $terms_list = wp_get_post_terms($postID, $term); 
@@ -186,3 +184,45 @@
     //Image Sizes
     add_image_size('image',600,600,false);
     add_image_size('my_custom_size',700,400,true);
+
+
+    // Post type Team Members
+
+    function awesome_team_members(){
+        $args=array(
+            'labels'=> array(
+                'name'=>'Team Members',
+                'singular_name'=>'Member'
+            ),
+            'hierarchical'=>false,
+            'public'=> true,
+            'menu_icon'=>'dashicons-admin-users',
+            'has_archive'=> true,
+            'supports'=>array('title','editor', 'thumbnail'),
+        );
+
+        register_post_type('members', $args);
+    }
+
+    add_action('init', 'awesome_team_members');
+
+
+    //Post Type Locations
+
+    function awesome_team_locations(){
+        $args=array(
+            'labels'=> array(
+                'name'=>'Locations',
+                'singular_name'=>'Location'
+            ),
+            'hierarchical'=>false,
+            'public'=> true,
+            'menu_icon'=>'dashicons-location',
+            'has_archive'=> true,
+            'supports'=>array('title','editor', 'thumbnail'),
+        );
+
+        register_post_type('locations', $args);
+    }
+
+    add_action('init', 'awesome_team_locations');
